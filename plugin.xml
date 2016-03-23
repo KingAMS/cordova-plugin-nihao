@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='utf-8'?>
+
+<plugin
+  xmlns="http://apache.org/cordova/ns/plugins/1.0"
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  id="cordova-plugin-nihao"
+  version="0.1.1">
+  <name>NH</name>
+  <description>Cordova Nihao Plugin</description>
+  <author>AMS</author>
+  <license>PRIVATE</license>
+  <repo>https://github.com/KingAMS/cordova-plugin-nihao.git</repo>
+  <issue>https://github.com/KingAMS/cordova-plugin-nihao/issues</issue>
+
+  <js-module src="www/nihao.js" name="nihao">
+    <clobbers target="NH" />
+  </js-module>
+
+  <!-- ios -->
+  <platform name="ios">
+    <config-file target="config.xml" parent="/*">
+      <feature name="NH">
+        <param name="ios-package" value="CDVTTS"/>
+      </feature>
+    </config-file>
+
+    <header-file src="src/ios/CDVTTS.h" />
+    <source-file src="src/ios/CDVTTS.m" />
+  </platform>
+
+
+  <!-- android -->
+  <platform name="android">
+    <config-file target="config.xml" parent="/*">
+      <feature name="NH">
+        <param name="android-package" value="com.nihaolabs.nihao.cordova.NH" />
+        <param name="onload" value="true" />
+      </feature>
+    </config-file>
+
+    <source-file src="src/android/NH.java" target-dir="src/com/nihaolabs/nihao/cordova" />
+  </platform>
+</plugin>

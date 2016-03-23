@@ -1,0 +1,28 @@
+{
+  "name": "cordova-plugin-nihao",
+  "version": "0.1.1",
+  "description": "Cordova Nihao Plugin",
+  "cordova": {
+    "id": "cordova-plugin-nihao",
+    "platforms": [
+      "ios",
+      "android"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KingAMS/cordova-plugin-nihao.git"
+  },
+  "keywords": [
+    "cordova",
+    "ecosystem:cordova",
+    "cordova-ios",
+    "cordova-android"
+  ],
+  "author": "AMS",
+  "license": "PRIVATE",
+  "bugs": {
+    "url": "https://github.com/KingAMS/cordova-plugin-nihao/issues"
+  },
+  "homepage": "https://github.com/KingAMS/cordova-plugin-nihao#readme"
+}
