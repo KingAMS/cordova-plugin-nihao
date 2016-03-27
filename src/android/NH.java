@@ -35,7 +35,7 @@ public class NH extends CordovaPlugin implements OnInitListener {
 
     @Override
     public void initialize(CordovaInterface cordova, final CordovaWebView webView) {
-        tts = new TextToSpeech(cordova.getActivity().getApplicationContext(), this);
+        tts = new TextToSpeech(cordova.getActivity().getApplicationContext(), this,"com.google.android.tts");
         tts.setOnUtteranceProgressListener(new UtteranceProgressListener() {
             @Override
             public void onStart(String s) {
