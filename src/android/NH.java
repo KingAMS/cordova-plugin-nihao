@@ -138,24 +138,31 @@ public class NH extends CordovaPlugin implements OnInitListener {
                         String[] localeArgs = locale.split("-");
                         Locale tempLocale = new Locale(localeArgs[0], localeArgs[1]);
                         Set<String> myset = tts.getFeatures(tempLocale);
-                        String[] res = myset.toArray(new String[myset.size()]);
-                        JSONArray jsonArr = new JSONArray(res);
-                        String myJson  = jsonArr.toString();
-                        log(locale +" Features:" +myJson);
-                        if(!myset.contains("networkTts")){
-                             log(locale +" Not Supported");
-                             incrementer.decrementAndGet();
-                              //callbackContext.error(locale +" Not Supported");
+                        if(myset == null){
+                            log("getFeatures returned null for "+locale);
+							tts.setLanguage(tempLocale);
+                            tts.speak(locale, TextToSpeech.QUEUE_ADD, ttsParams);
                         }
                         else{
-                            if(!myset.contains("embeddedTts")){
-                                needUpdate = true;
-                                log(locale +" Not Installed locally");
-                                tts.setLanguage(tempLocale);
-                                tts.speak(locale, TextToSpeech.QUEUE_ADD, ttsParams);
+                            String[] res = myset.toArray(new String[myset.size()]);
+                            JSONArray jsonArr = new JSONArray(res);
+                            String myJson  = jsonArr.toString();
+                            log(locale +" Features:" +myJson);
+                            if(!myset.contains("networkTts")){
+                                 log(locale +" Not Supported");
+                                 incrementer.decrementAndGet();
+                                  //callbackContext.error(locale +" Not Supported");
                             }
                             else{
-                                incrementer.decrementAndGet();
+                                if(!myset.contains("embeddedTts")){
+                                    needUpdate = true;
+                                    log(locale +" Not Installed locally");
+                                    tts.setLanguage(tempLocale);
+                                    tts.speak(locale, TextToSpeech.QUEUE_ADD, ttsParams);
+                                }
+                                else{
+                                    incrementer.decrementAndGet();
+                                }
                             }
                         }
                     }
