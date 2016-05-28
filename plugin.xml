@@ -37,7 +37,8 @@
         <param name="onload" value="true" />
       </feature>
     </config-file>
-
+    <source-file src="src/android/CropResizeImage.java" target-dir="src/com/nihaolabs/nihao/cordova" />
+    <source-file src="src/android/TTS.java" target-dir="src/com/nihaolabs/nihao/cordova" />
     <source-file src="src/android/NH.java" target-dir="src/com/nihaolabs/nihao/cordova" />
   </platform>
 </plugin>
