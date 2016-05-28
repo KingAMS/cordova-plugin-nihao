@@ -10,6 +10,7 @@ import java.io.OutputStream;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.lang.IllegalArgumentException;
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
@@ -89,6 +90,9 @@ public class CropResizeImage implements Runnable {
 		} catch (URISyntaxException e) {
 			Log.d("PLUGIN", e.getMessage());
 			callbackContext.error(e.getMessage());
+		} catch(IllegalArgumentException e){
+			Log.d("PLUGIN", e.getMessage());
+			callbackContext.error(e.getMessage());
 		}
 	}
 
@@ -116,16 +120,22 @@ public class CropResizeImage implements Runnable {
 		if (widthScale > heightScale) {
 			scaledWidth = targetWidth;
 			scaledHeight = height * widthScale;
+			if(scaledHeight < targetHeight){
+				scaledHeight = targetHeight;
+			}
 			//crop height by...
 			startY = (int) ((scaledHeight - targetHeight) / 2);
 		} else {
 			scaledHeight = targetHeight;
 			scaledWidth = width * heightScale;
+			if(scaledWidth < targetWidth){
+				scaledWidth = targetWidth;
+			}
 			//crop width by..
 			startX = (int) ((scaledWidth - targetWidth) / 2);
 		}
-
 		Bitmap scaledBitmap = Bitmap.createScaledBitmap(original, (int) scaledWidth, (int) scaledHeight, true);
+		Log.d("PLUGIN", "x="+startX +" targetWidth="+targetWidth+" origwidth ="+width+" scaledWidth="+scaledWidth);
 		Bitmap resizedBitmap = Bitmap.createBitmap(scaledBitmap, startX, startY, targetWidth, targetHeight);
 		return resizedBitmap;
 	}
