@@ -4,7 +4,7 @@
   xmlns="http://apache.org/cordova/ns/plugins/1.0"
   xmlns:android="http://schemas.android.com/apk/res/android"
   id="cordova-plugin-nihao"
-  version="0.1.1">
+  version="0.2.0">
   <name>NH</name>
   <description>Cordova Nihao Plugin</description>
   <author>AMS</author>
@@ -20,12 +20,13 @@
   <platform name="ios">
     <config-file target="config.xml" parent="/*">
       <feature name="NH">
-        <param name="ios-package" value="CDVTTS"/>
+        <param name="ios-package" value="NH"/>
       </feature>
     </config-file>
-
-    <header-file src="src/ios/CDVTTS.h" />
-    <source-file src="src/ios/CDVTTS.m" />
+    <header-file src="src/ios/NH.h" />
+    <source-file src="src/ios/NH.m" />
+    <header-file src="src/ios/NSData+Base64.h" />
+    <source-file src="src/ios/NSData+Base64.m" />
   </platform>
 
 

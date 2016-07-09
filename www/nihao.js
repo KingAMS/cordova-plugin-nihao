@@ -1,19 +1,12 @@
 
 
 
-exports.checkTTS = function (onfulfilled, onrejected,locales) {
-
-
-    cordova
-        .exec(function (res) {
-            onfulfilled(res);
-        }, function (reason) {
-            onrejected(reason);
-        }, 'NH', 'checktts', locales);
+exports.checkTTS = function (success, fail, locales) {
+    cordova.exec(success, fail, 'NH', 'checktts', locales);
 };
 
 
-exports.cropAndResize = function (onfulfilled, onrejected, imageUri, width, height,options) {
+exports.cropAndResize = function (success, fail, imageUri, width, height,options) {
     if (!options) {
         options = {};
     }
@@ -27,12 +20,8 @@ exports.cropAndResize = function (onfulfilled, onrejected, imageUri, width, heig
         storeImage: options.storeImage ? options.storeImage : false,
         directory: options.directory ? options.directory : null,
         filename: options.filename ? options.filename : null,
-    }   
+    }
 
     cordova
-        .exec(function (res) {
-            onfulfilled(res);
-        }, function (reason) {
-            onrejected(reason);
-        }, 'NH', 'cropAndResize', [params]);
+        .exec(success, fail, 'NH', 'cropAndResize', [params]);
 };
